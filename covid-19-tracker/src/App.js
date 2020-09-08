@@ -10,11 +10,12 @@ import './App.css';
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [country, setCountry] = useState('global')
 
   useEffect(() => {
   //  async -> send a request to a server, wait for it, do something with data
 
-    const getCountryData = async () => {
+    const getCountriesData = async () => {
       await fetch ("https://disease.sh/v3/covid-19/countries")
         .then((response) => response.json())
         .then((data) => {
@@ -27,20 +28,25 @@ function App() {
             setCountries(countries)
         });
     };
-    getCountryData();
+    getCountriesData();
   }, []);
+
+  const onCountryChange = async (e) => {
+    const countryCode = e.target.value;
+    setCountry(countryCode);
+  };
+
   return (
     <div className="App">
 
-      {/* Header */}
+      {/* Header & Selector */}
 
       <div className="app_header">
         <h1>COVID-19 Tracker</h1>
         <FormControl className={"app_dropdown"}>
-          <Select variant="outlined"
-                value=""
-                >
+          <Select variant="outlined" onChange={onCountryChange} value={country}>
             {/* Loop through countries and show a dropdown of options*/}
+            <MenuItem value="global">Global</MenuItem>
             {countries.map((country) => (
                 <MenuItem value={country.value}>{country.name}</MenuItem>
               ))};
@@ -48,11 +54,14 @@ function App() {
          </FormControl>
         </div>
 
-      {/* Title + Selector */}
+      <div className="app_stats">
+        {/* InfoBox Cases*/}
+        {/* InfoBox Recoveries*/}
+        {/* InfoBox */}
 
-      {/* InfoBox */}
-      {/* InfoBox */}
-      {/* InfoBox */}
+      </div>
+
+
 
       {/* Table */}
       {/* Graph */}
