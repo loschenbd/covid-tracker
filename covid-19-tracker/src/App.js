@@ -7,7 +7,6 @@ import {
   CardContent,
 } from "@material-ui/core";
 
-
 import {sortData} from "./components/util"
 import InfoBox from "./components/InfoBox";
 import Map from "./components/Map";
@@ -20,6 +19,8 @@ function App() {
   const [country, setCountry] = useState("global");
   const [countryInfo, setCountryInfo] = useState({});
   const[tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({ lat: 34.90746, lng: -40.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -92,7 +93,10 @@ function App() {
           <InfoBox title={"Recovered"} cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
           <InfoBox title={"Deaths"} cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
         </div>
-        <Map />
+        <Map
+          center={mapCenter}
+          zoom={mapZoom}
+        />
       </div>
 
       <Card className="app_right">
