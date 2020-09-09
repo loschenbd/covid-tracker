@@ -13,6 +13,7 @@ import Map from "./components/Map";
 import Table from "./components/Table"
 import LineGraph from "./components/LineGraph"
 import "./App.css";
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -60,12 +61,15 @@ function App() {
         : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
 
     await fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        setCountry(countryCode);
-        setCountryInfo(data);
-      })
-  };
+    .then(response => response.json())
+    .then(data => {
+      setCountry(countryCode);
+      setCountryInfo(data);
+
+      setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+      setMapZoom(4);
+    })
+};
 
   return (
     <div className="app">
