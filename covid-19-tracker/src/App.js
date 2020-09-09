@@ -17,7 +17,7 @@ import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState("global");
+  const [country, setInputCountry] = useState("global");
   const [countryInfo, setCountryInfo] = useState({});
   const[tableData, setTableData] = useState([]);
   const [mapCenter, setMapCenter] = useState({ lat: 34.90746, lng: -40.4796 });
@@ -56,17 +56,15 @@ function App() {
 
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
-    setCountry(countryCode);
 
     const url =
       countryCode === "global"
         ? "https://disease.sh/v3/covid-19/all"
         : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
-
     await fetch(url)
     .then(response => response.json())
     .then(data => {
-      setCountry(countryCode);
+      setInputCountry(countryCode);
       setCountryInfo(data);
 
       setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
@@ -127,8 +125,8 @@ function App() {
           <h3>Live Cases By Country</h3>
           <Table countries={tableData}/>
           <h3>Global New {casesType}</h3>
+          <LineGraph className="app_graph" casesType={casesType}/>
         </CardContent>
-        <LineGraph/>
       </Card>
     </div>
   );
