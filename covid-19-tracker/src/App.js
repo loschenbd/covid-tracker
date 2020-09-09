@@ -105,7 +105,7 @@ function App() {
             onClick={e => setCasesType('recovered')}
             title={"Recovered"}
             cases={prettyPrintStat(countryInfo.todayRecovered)}
-            otal={prettyPrintStat(countryInfo.recovered)} />
+            total={prettyPrintStat(countryInfo.recovered)} />
           <InfoBox
             onClick={e => setCasesType('deaths')}
             title={"Deaths"}
