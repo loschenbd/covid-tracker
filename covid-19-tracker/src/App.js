@@ -7,7 +7,7 @@ import {
   CardContent,
 } from "@material-ui/core";
 
-import {sortData} from "./components/util"
+import { prettyPrintStat, sortData } from "./components/util";
 import InfoBox from "./components/InfoBox";
 import Map from "./components/Map";
 import Table from "./components/Table"
@@ -95,9 +95,9 @@ function App() {
           </FormControl>
         </div>
         <div className="app_stats">
-          <InfoBox title={"Coronavirus Cases"} cases={countryInfo.todayCases} total={countryInfo.cases} />
-          <InfoBox title={"Recovered"} cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
-          <InfoBox title={"Deaths"} cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
+          <InfoBox title={"Coronavirus Cases"} cases={prettyPrintStat(countryInfo.todayCases)} total={prettyPrintStat(countryInfo.cases)} />
+          <InfoBox title={"Recovered"} cases={prettyPrintStat(countryInfo.todayRecovered)} total={prettyPrintStat(countryInfo.recovered)} />
+          <InfoBox title={"Deaths"} cases={prettyPrintStat(countryInfo.todayDeaths)} total={prettyPrintStat(countryInfo.deaths)} />
         </div>
         <Map
           countries={mapCountries}
