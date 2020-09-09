@@ -16,5 +16,5 @@
 }
 
 .table tr:nth-last-of-type(odd){
-    background-color: rgba(255, 148, 85, 0.13);
+    background-color: #e2f8f9;
 }

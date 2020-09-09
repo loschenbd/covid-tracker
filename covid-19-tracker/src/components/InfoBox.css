@@ -1,6 +1,11 @@
 .infobox {
     flex: 1;
 }
+.infobox:hover {
+    -webkit-box-shadow: inset 1px 0px 5px 0px rgba(148,148,148,1);
+    -moz-box-shadow: inset 1px 0px 5px 0px rgba(148,148,148,1);
+    box-shadow: inset 1px 0px 5px 0px rgba(148,148,148,1);
+}
 
 .infobox:not(:last-child) {
     margin-right: 10px;
@@ -11,7 +16,7 @@
 }
 
 .infobox_cases {
-    color: #ff9954;
+    color: #57AEB0;
     font-weight: 600;
     font-size: 1.75rem;
     margin-bottom: 0.5rem;

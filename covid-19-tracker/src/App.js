@@ -23,6 +23,7 @@ function App() {
   const [mapCenter, setMapCenter] = useState({ lat: 34.90746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -95,11 +96,24 @@ function App() {
           </FormControl>
         </div>
         <div className="app_stats">
-          <InfoBox title={"Coronavirus Cases"} cases={prettyPrintStat(countryInfo.todayCases)} total={prettyPrintStat(countryInfo.cases)} />
-          <InfoBox title={"Recovered"} cases={prettyPrintStat(countryInfo.todayRecovered)} total={prettyPrintStat(countryInfo.recovered)} />
-          <InfoBox title={"Deaths"} cases={prettyPrintStat(countryInfo.todayDeaths)} total={prettyPrintStat(countryInfo.deaths)} />
+          <InfoBox
+            onClick={e => setCasesType('cases')}
+            title={"Coronavirus Cases"}
+            cases={prettyPrintStat(countryInfo.todayCases)}
+            total={prettyPrintStat(countryInfo.cases)} />
+          <InfoBox
+            onClick={e => setCasesType('recovered')}
+            title={"Recovered"}
+            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            otal={prettyPrintStat(countryInfo.recovered)} />
+          <InfoBox
+            onClick={e => setCasesType('deaths')}
+            title={"Deaths"}
+            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            total={prettyPrintStat(countryInfo.deaths)} />
         </div>
         <Map
+          casesType={casesType}
           countries={mapCountries}
           center={mapCenter}
           zoom={mapZoom}
@@ -112,7 +126,7 @@ function App() {
 
           <h3>Live Cases By Country</h3>
           <Table countries={tableData}/>
-          <h3>Global New Cases</h3>
+          <h3>Global New {casesType}</h3>
         </CardContent>
         <LineGraph/>
       </Card>

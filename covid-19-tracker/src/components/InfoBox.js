@@ -2,9 +2,11 @@ import React from 'react';
 import {Card, CardContent, Typography} from "@material-ui/core";
 import "./InfoBox.css";
 
-const MyComponent = ({ title, cases, total }) => {
+const InfoBox = ({ title, cases, total, ...props }) => {
   return (
-    <Card className={"infobox"}>
+    <Card
+      onClick={props.onClick}
+      className={"infobox"}>
         <CardContent>
       {/* Title */}
           <Typography className="infobox_title" color="textSecondary">
@@ -22,4 +24,4 @@ const MyComponent = ({ title, cases, total }) => {
   );
 };
 
-export default MyComponent;
+export default InfoBox;

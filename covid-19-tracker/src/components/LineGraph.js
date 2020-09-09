@@ -81,15 +81,14 @@ const LineGraph = ({casesType}) => {
 
   return (
     <div>
-      <h1>Graph</h1>
       {data?.length > 0 && (
         <Line
           options={options}
           data={{
             datasets: [
               {
-                backgroundColor: "rgb(255, 153, 84, 0.5)",
-                borderColor: "rgb(255, 153, 84)",
+                backgroundColor: "rgb(87, 174, 176, 0.5)",
+                borderColor: "#57AEB0",
                 data: data,
               },
             ],
